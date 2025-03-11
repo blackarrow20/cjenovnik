@@ -1,0 +1,161 @@
+{
+    "header": {
+        "title": "CJENOVNIK OTKUPA OTPADA NA MALO",
+        "name": "\"Trgosirovina\" D.O.O. Sarajevo",
+        "address": "Adresa: ul. Halilovići br. 9",
+        "contact": "Tel./Fax: 033/466-401",
+        "num": "Broj: 115/25"
+    },
+    "categories": [
+        {
+            "categoryName": "Željezo",
+            "items": [
+                { "rb": "1", "name": "Fe livačko (kasirano na male dužine)", "jmj": "kg", "price": "0,48 KM" },
+                { "rb": "2", "name": "Fe +10mm kasirano (Bez ulja, bez gusa)", "jmj": "kg", "price": "0,45 KM" },
+                { "rb": "3", "name": "Fe +10 mm koje nije kasirano", "jmj": "kg", "price": "0,40 KM" },
+                { "rb": "4", "name": "Fe +6 mm kasirano (bez ulja, bez nečistoća)", "jmj": "kg", "price": "0,40 KM" },
+                { "rb": "5", "name": "Fe +6 mm sa nečistoćama", "jmj": "kg", "price": "0,32 KM" },
+                { "rb": "6", "name": "Fe +3 mm kasirano (čisto)", "jmj": "kg", "price": "0,35 KM" },
+                { "rb": "7", "name": "Fe +3 mm sa nečistoćama", "jmj": "kg", "price": "0,33 KM" },
+                { "rb": "8", "name": "Fe mješano", "jmj": "kg", "price": "0,25 KM" },
+                { "rb": "9", "name": "Fe sakupljačko", "jmj": "kg", "price": "0,20 KM" },
+                { "rb": "10", "name": "Fe lim - čisti", "jmj": "kg", "price": "0,30 KM" },
+                { "rb": "11", "name": "Fe lim - nečisti", "jmj": "kg", "price": "0,20 KM" },
+                { "rb": "12", "name": "Gus - liv", "jmj": "kg", "price": "0,45 KM" },
+                { "rb": "13", "name": "Fe špena", "jmj": "kg", "price": "0,20 KM" },
+                { "rb": "14", "name": "Vozila kompletna", "jmj": "kg", "price": "0,30 KM" }
+            ]
+        },
+        {
+            "categoryName": "Prokrom",
+            "items": [
+                { "rb": "15", "name": "Prokrom - legirano", "jmj": "kg", "price": "1,50 KM" },
+                { "rb": "16", "name": "Prokrom - nečisti", "jmj": "kg", "price": "1,00 KM" },
+                { "rb": "17", "name": "Prokrom - špena", "jmj": "kg", "price": "0,80 KM" }
+            ]
+        },
+        {
+            "categoryName": "Bakar",
+            "items": [
+                { "rb": "18", "name": "Cu I klasa", "jmj": "kg", "price": "14,00 KM" },
+                { "rb": "19", "name": "Cu II klasa", "jmj": "kg", "price": "13,00 KM" },
+                { "rb": "20", "name": "Cu III klasa", "jmj": "kg", "price": "12,50 KM" },
+                { "rb": "21", "name": "Cu III klasa paljeni", "jmj": "kg", "price": "12,00 KM" },
+                { "rb": "22", "name": "Bakar Milbery lim", "jmj": "kg", "price": "13,00 KM" },
+                { "rb": "23", "name": "Bakar Milbery žica, +5mm", "jmj": "kg", "price": "14,50 KM" },
+                { "rb": "24", "name": "Bakar uže čisto", "jmj": "kg", "price": "14,00 KM" },
+                { "rb": "25", "name": "Bakar mješani", "jmj": "kg", "price": "10,00 KM" },
+                { "rb": "26", "name": "Bakar sa izolacijom (sa papirnom izolacijom)", "jmj": "kg", "price": "8,00 KM" },
+                { "rb": "27", "name": "Bakarna špena (čista bez Fe)", "jmj": "kg", "price": "9,00 KM" },
+                { "rb": "28", "name": "Bakarni kabal (cijena zavisi od % bakra)", "jmj": "kg", "price": "3,00 KM" },
+                { "rb": "29", "name": "Bakarni kabal čisti", "jmj": "kg", "price": "3,50 KM" }
+            ]
+        },
+        {
+            "categoryName": "Bronza",
+            "items": [
+                { "rb": "30", "name": "Bronza si kalajna", "jmj": "kg", "price": "8,00 KM" }
+            ]
+        },
+        {
+            "categoryName": "Mesing",
+            "items": [
+                { "rb": "31", "name": "Mesing čisti (veliki komadi - bez primjesa)", "jmj": "kg", "price": "8,00 KM" },
+                { "rb": "32", "name": "Mesing - nečisti", "jmj": "kg", "price": "7,50 KM" },
+                { "rb": "32", "name": "Mesing sakupljački (česme, mali komadi i sl.)", "jmj": "kg", "price": "6,00 KM" },
+                { "rb": "33", "name": "Mesing špena čista", "jmj": "kg", "price": "5,00 KM" }
+            ]
+        },
+        {
+            "categoryName": "Hladnjaci",
+            "items": [
+                { "rb": "34", "name": "Hladnjak Ms-Cu (Mesing - Bakar)", "jmj": "kg", "price": "7,00 KM" },
+                { "rb": "35", "name": "Hladnjak Al-Cu (Aluminij-Bakar)", "jmj": "kg", "price": "5,00 KM" },
+                { "rb": "36", "name": "Hladnjak Aluminij - čisti", "jmj": "kg", "price": "1,80 KM" },
+                { "rb": "37", "name": "Hladnjak Aluminij - nečisti (sa plastikom i željezom)", "jmj": "kg", "price": "1,00 KM" }
+            ]
+        },
+        {
+            "categoryName": "Aluminij",
+            "items": [
+                { "rb": "38", "name": "Aluminij cijevi", "jmj": "kg", "price": "2,10 KM" },
+                { "rb": "39", "name": "Aluminij tvrdi - čisti (bez ikakvih primjesa)", "jmj": "kg", "price": "2,30 KM" },
+                { "rb": "40", "name": "Aluminij tvrdi - nečisti (sa primjesama)", "jmj": "kg", "price": "2,00 KM" },
+                { "rb": "41", "name": "Aluminij mehki", "jmj": "kg", "price": "1,50 KM" },
+                { "rb": "42", "name": "Aluminij nečisti (mjenjači, boš pumpe i drugo)", "jmj": "kg", "price": "1,00 KM" },
+                { "rb": "43", "name": "Aluminijski lim čisti-blank (bez ikakvih primjesa drugih metala)", "jmj": "kg", "price": "2,80 KM" },
+                { "rb": "44", "name": "Aluminijski lim čisti-blank (sa primjesama drugih metala - mješani)", "jmj": "kg", "price": "2,50 KM" },
+                { "rb": "45", "name": "Aluminijski lim obojeni (bez ikakvih primjesa)", "jmj": "kg", "price": "2,20 KM" },
+                { "rb": "46", "name": "Aluminijski lim obojeni (sa primjesama drugih metala - mješani)", "jmj": "kg", "price": "2,00 KM" },
+                { "rb": "47", "name": "Aluminij si mješani", "jmj": "kg", "price": "2,00 KM" },
+                { "rb": "48", "name": "Aluminijski ofset", "jmj": "kg", "price": "2,80 KM" },
+                { "rb": "49", "name": "Aluminijski ofset upotrebljivi (H=77cm x W=105cm)", "jmj": "kg", "price": "3,00 KM" },
+                { "rb": "50", "name": "Aluminij si felge", "jmj": "kg", "price": "3,00 KM" },
+                { "rb": "51", "name": "Aluminij si limenke", "jmj": "kg", "price": "1,80 KM" },
+                { "rb": "52", "name": "Aluminij špena (suha)", "jmj": "kg", "price": "1,50 KM" },
+                { "rb": "53", "name": "Aluminij stranice čiste", "jmj": "kg", "price": "2,50 KM" },
+                { "rb": "54", "name": "Aluminij stranice bojene", "jmj": "kg", "price": "2,00 KM" },
+                { "rb": "55", "name": "Aluminij roletne", "jmj": "kg", "price": "0,50 KM" },
+                { "rb": "56", "name": "Aluminij profil sa PVC (PVC stolarija, Al stolarija sa kederima)", "jmj": "kg", "price": "2,30 KM" },
+                { "rb": "57", "name": "Aluminij profil čisti (mix)", "jmj": "kg", "price": "2,60 KM" },
+                { "rb": "58", "name": "Aluminij profil čisti novi", "jmj": "kg", "price": "3,00 KM" },
+                { "rb": "59", "name": "Aluminij profil čisti stari", "jmj": "kg", "price": "2,80 KM" },
+                { "rb": "60", "name": "Aluminij profil bojeni (mix)", "jmj": "kg", "price": "2,50 KM" },
+                { "rb": "61", "name": "Aluminij profil novi bojeni", "jmj": "kg", "price": "2,60 KM" },
+                { "rb": "62", "name": "Aluminij profili stari bojeni (stari prozori sa Fe, umanjuje se količina)", "jmj": "kg", "price": "2,00 KM" },
+                { "rb": "63", "name": "Aluminijsko uže čisto", "jmj": "kg", "price": "3,50 KM" },
+                { "rb": "64", "name": "Aluminijsko uže sa Fe (željezom)", "jmj": "kg", "price": "1,80 KM" },
+                { "rb": "65", "name": "Aluminijsko uže paljeno", "jmj": "kg", "price": "3,00 KM" },
+                { "rb": "66", "name": "Aluminijski kablovi (cijena zavisi od % Al)", "jmj": "kg", "price": "1,50 KM" }
+            ]
+        },
+        {
+            "categoryName": "Olovo",
+            "items": [
+                { "rb": "67", "name": "Olovo čisto", "jmj": "kg", "price": "2,00 KM" },
+                { "rb": "68", "name": "Olovo nečisto (filcom, katran, papirom i drugo)", "jmj": "kg", "price": "1,50 KM" },
+                { "rb": "68", "name": "Olovo balansi od guma", "jmj": "kg", "price": "0,50 KM" },
+                { "rb": "69", "name": "Olovne baterije - AKUMULATORI", "jmj": "kg", "price": "1,30 KM" }
+            ]
+        },
+        {
+            "categoryName": "Cink",
+            "items": [
+                { "rb": "70", "name": "Cink - komad", "jmj": "kg", "price": "1,50 KM" },
+                { "rb": "71", "name": "Cink karburatori", "jmj": "kg", "price": "0,80 KM" },
+                { "rb": "72", "name": "Cink - lim", "jmj": "kg", "price": "1,50 KM" }
+            ]
+        },
+        {
+            "categoryName": "Elektromotori",
+            "items": [
+                { "rb": "73", "name": "Elektromotori", "jmj": "kg", "price": "0,80 KM" }
+            ]
+        },
+        {
+            "categoryName": "Elektronski i električni otpad",
+            "items": [
+                { "rb": "74", "name": "Veš mašina komplet", "jmj": "kg", "price": "0,20 KM" },
+                { "rb": "75", "name": "Mašina za pranje suđa", "jmj": "kg", "price": "0,20 KM" },
+                { "rb": "76", "name": "Električni šporet", "jmj": "kg", "price": "0,25 KM" },
+                { "rb": "77", "name": "Zamrzivači (rashladni uređaji - frižideri)", "jmj": "kg", "price": "Besplatno" },
+                { "rb": "78", "name": "IT Oprema 3,8 (računari, serveri)", "jmj": "kg", "price": "0,25 KM" },
+                { "rb": "79", "name": "TV, Monitori, Printeri", "jmj": "kg", "price": "Besplatno" },
+                { "rb": "80", "name": "UPS-ovi", "jmj": "kg", "price": "1,00 KM" },
+                { "rb": "81", "name": "Plastični procesori", "jmj": "kg", "price": "20,00 KM" },
+                { "rb": "82", "name": "Keramički procesori", "jmj": "kg", "price": "30,00 KM" },
+                { "rb": "83", "name": "Keramički procesori sa Au (zlatom) kapama", "jmj": "kg", "price": "50,00 KM" },
+                { "rb": "84", "name": "RAM memorija sa Au(zlatom)", "jmj": "kg", "price": "40,00 KM" },
+                { "rb": "85", "name": "RAM memorija sa Ag(srebrom)", "jmj": "kg", "price": "20,00 KM" },
+                { "rb": "86", "name": "Hard diskovi", "jmj": "kg", "price": "1,20 KM" },
+                { "rb": "87", "name": "Napojna jedinica", "jmj": "kg", "price": "0,80 KM" },
+                { "rb": "87", "name": "Matične ploče I klase", "jmj": "kg", "price": "10,00 KM" },
+                { "rb": "88", "name": "Matične ploče II klase", "jmj": "kg", "price": "5,00 KM" },
+                { "rb": "89", "name": "Matične ploče III klase", "jmj": "kg", "price": "4,00 KM" },
+                { "rb": "90", "name": "Matične ploče IV klase", "jmj": "kg", "price": "1,00 KM" }
+            ]
+        }
+    ],
+    "fontSize": "15px",
+    "fontStyle": "Verdana, Geneva, sans-serif"
+}

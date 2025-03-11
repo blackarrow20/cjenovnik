@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price List</title>
+    <script src="jquery-1.12.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            margin: 0;
+            text-align: center;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+        #controls {
+            padding: 10px;
+            background: #007bff;
+            width: 85%;
+            color: white;
+        }
+        button {
+            padding: 10px 10px;            
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+		.button_simple {
+			font-size: inherit;
+		}
+		.button_chosen {
+			font-size: inherit;
+			background-color: #ccccff;
+		}
+        #loadPricing { background: #28a745; color: white; }
+        #fullScreen { background: #28a745; color: white; }
+        #priceContainer {
+            background: white;
+            margin: 20px auto;
+            padding: 10px;
+            width: 85%;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-height: 95vh; /* Allow the container to grow to a maximum height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        td {
+            background: #f8f9fa;
+        }
+        #companyDetails {
+            color: #333;
+        }
+        /* Full-screen adjustments */
+        .fullscreen #controls {
+            display: none; /* Hide the controls when in full-screen mode */
+        }
+        /* Centering content vertically */
+        #content {
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            position: relative; /* Ensure that the time can be positioned relative to the content */
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <div id="controls">
+        <button id="fullScreen" style="font-size: 18px;">Puni Zaslon</button>
+        <button id="loadPricing" style="font-size: 18px;">Učitaj Cjenovnik</button>
+        <input type="file" id="fileInput" accept=".txt" style="display:none;">
+    </div>
+
+    <div id="priceContainer">
+		<table cellspacing="0" cellpadding="0" border="0" width="95%">
+			<tr>
+				<td width="27%" align="center" valign="middle"><div id="contactInfo"></div></td>
+				<td align="center" valign="top"><div id="companyDetails"></div></td>
+				<td width="27%" align="center" valign="middle"><div id="dateTime"></div></td>
+			</tr>
+		</table>
+		Kliknite/odaberite jednu od kategorija navedenih ispod: <div id="categories">...</div>
+        <table id="priceTable">
+            <thead>
+                <tr>
+                    <th>Rb</th>
+                    <th>Naziv artikla</th>
+					<th>JMJ</th>
+					<th>Jedinična cijena</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>               
+    </div>    
+</div>
+
+<script>
+$(document).ready(function() {
+	displayCategory();
+	
+    // Update Date & Time every minute
+    setInterval(updateDateTime, 60000);
+    updateDateTime();
+
+    // Handle Full-Screen Mode
+    $('#fullScreen').click(toggleFullScreen);
+
+    // Handle Pricing File Load
+    $('#loadPricing').click(function() {
+        $('#fileInput').click();
+    });
+
+    $('#fileInput').change(function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    var jsonData = JSON.parse(e.target.result);
+                    localStorage.setItem('pricingData', JSON.stringify(jsonData));
+                    displayPricing(jsonData);
+                    $('#fileInput').val(''); // Reset file input
+                } catch (error) {
+                    alert('Invalid JSON file format.');
+                }
+            };
+            reader.readAsText(file);
+        }
+    });
+
+	$(window).resize(function() {
+		adjustPadding();
+	});
+  
+    // Listen for full-screen change events
+    document.addEventListener('fullscreenchange', onFullScreenChange);
+    document.addEventListener('webkitfullscreenchange', onFullScreenChange);
+    document.addEventListener('mozfullscreenchange', onFullScreenChange);
+    document.addEventListener('msfullscreenchange', onFullScreenChange);
+});
+
+function adjustPadding() {
+    var cellWidth = $('td.articles').width();    
+    var paddingValue = cellWidth * 0.2;    
+    $('td.articles').css('padding-left', paddingValue + 'px');
+	
+	cellWidth = $('td.prices').width();    
+    paddingValue = cellWidth * 0.2;    
+    $('td.prices').css('padding-left', paddingValue + 'px');
+}
+
+let isFullScreen = false;
+
+function displayCategory(categoryName = "") {
+	// Load pricing from localStorage
+	if (localStorage.getItem('pricingData')) {
+		displayPricing(JSON.parse(localStorage.getItem('pricingData')), categoryName);
+	} else {
+		displayPricing(JSON.parse("{}"), categoryName);
+	}
+}    
+	
+function displayPricing(data, categoryName = "") {
+    var tableBody = $('#priceTable tbody');
+    tableBody.empty();
+	$("#categories").html("");
+
+	var title = data.header && data.header.title ? data.header.title : "CJENOVNIK";
+    var companyName = data.header && data.header.name ? data.header.name : "Nepoznata Kompanija";
+	var companyAddress = data.header && data.header.address ? data.header.address : "Nepoznata Adresa";
+    var companyContact = data.header && data.header.contact ? data.header.contact : "Nema Kontaktnih Podataka";
+	var companyNum = data.header && data.header.num ? data.header.num : "Nema Broja";
+	
+    $('#companyDetails').html(
+		'<div><strong>' + title + '</strong></div>' +
+        '<div>' + companyName + '</div>'
+    );
+
+    // Display the contact information below the pricing container
+    $('#contactInfo').html(
+		'<div>' + companyAddress + '</div>' +
+        '<div>' + companyContact + '</div>' +
+		'<div>' + companyNum + '</div>'
+    );
+
+    // Apply font size and font style from the JSON data if present
+    if (data.fontSize && data.fontStyle) {
+        $('body').css('font-size', data.fontSize);
+        $('body').css('font-family', data.fontStyle);
+    }
+
+    if (Array.isArray(data.categories)) {
+        $.each(data.categories, function(index, category) {
+			if (categoryName == "") categoryName = category.categoryName;
+			if (categoryName == category.categoryName) {
+				$("#categories").append(
+					"<button class='button_chosen' onclick=\"displayCategory('" + category.categoryName + "');\">" + 
+					category.categoryName + 
+					"</button>"
+				);
+				$.each(category.items, function(index, item) {
+					tableBody.append(
+						'<tr><td>' + 
+						(item.rb || "N/A") + 
+						'</td><td class="articles" align="left">' + 
+						(item.name || "Bezimena stavka") + 
+						'</td><td>' + 
+						(item.jmj || "N/A") + 
+						'</td><td class="prices" align="left">' + 
+						(item.price || "N/A") + 
+						'</td></tr>'
+					);     
+				});
+			} else {
+				$("#categories").append(
+					"<button class='button_simple' onclick=\"displayCategory('" + category.categoryName + "');\">" + 
+					category.categoryName + 
+					"</button>"
+			    );
+			}
+		});
+    } else {		
+        tableBody.append('<tr><td colspan="4">Nema podataka, molimo učitajte cjenovnik iz fajla...</td></tr>');
+    }
+	adjustPadding();
+}
+
+function getCurrentDateTime() {
+    var now = new Date();
+    var day = ('0' + now.getDate()).slice(-2);
+    var month = ('0' + (now.getMonth() + 1)).slice(-2);
+    var year = now.getFullYear();
+    var hours = ('0' + now.getHours()).slice(-2);
+    var minutes = ('0' + now.getMinutes()).slice(-2);
+    return day + '.' + month + '.' + year + ' ' + hours + ':' + minutes;
+}
+
+function updateDateTime() {
+    $('#dateTime').html("Datum i Vrijeme<br>" + getCurrentDateTime());
+}
+
+function toggleFullScreen() {
+    var elem = document.documentElement;
+
+    if (isFullScreen) {
+        // Exit Full Screen
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        isFullScreen = false;
+        $('body').removeClass('fullscreen');
+    } else {
+        // Enter Full Screen
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        isFullScreen = true;
+        $('body').addClass('fullscreen');
+    }
+}
+
+function onFullScreenChange() {
+    // When the full screen status changes, update the isFullScreen flag
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+        isFullScreen = true;
+        $('body').addClass('fullscreen');
+    } else {
+        isFullScreen = false;
+        $('body').removeClass('fullscreen');
+    }
+}
+</script>
+</body>
+</html>
