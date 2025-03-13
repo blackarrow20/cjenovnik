@@ -256,7 +256,7 @@ function getCurrentDateTime() {
 }
 
 function updateDateTime() {
-    $('#dateTime').html("Datum i Vrijeme<br>" + getCurrentDateTime());
+    $('#dateTime').html("Datum i Vrijeme<br><span onclick='if (isFullScreen) toggleFullScreen();'>" + getCurrentDateTime() + "</span>");
 }
 
 function toggleFullScreen() {
