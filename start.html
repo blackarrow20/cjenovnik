@@ -8,14 +8,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            background: linear-gradient(to bottom, #004d00, #66cc66);
             margin: 0;
             text-align: center;
             overflow: hidden; /* Prevent scrollbars */
+            color: black;
         }
         #controls {
             padding: 10px;
-            background: #007bff;
+            background: #006600;
             width: 85%;
             color: white;
         }
@@ -26,15 +27,20 @@
             border: none;
             border-radius: 5px;
         }
-		.button_simple {
-			font-size: inherit;
-		}
-		.button_chosen {
-			font-size: inherit;
-			background-color: #ccccff;
-		}
-        #loadPricing { background: #28a745; color: white; }
-        #fullScreen { background: #28a745; color: white; }
+        .button_simple {
+            font-size: inherit;
+            background-color: #66cc66;
+            color: black;
+        }
+        .button_chosen {
+            font-size: inherit;
+            background-color: #339933;
+            color: white;
+        }
+        #loadPricing, #fullScreen { 
+            background: #009900; 
+            color: white; 
+        }
         #priceContainer {
             background: white;
             margin: 20px auto;
@@ -51,24 +57,23 @@
             margin-top: 5px;
         }
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #004d00;
             padding: 5px;
         }
         th {
-            background: #007bff;
+            background: #008000;
             color: white;
         }
         td {
-            background: #f8f9fa;
+            background: #e6ffe6;
+            color: black;
         }
         #companyDetails {
-            color: #333;
+            color: #003300;
         }
-        /* Full-screen adjustments */
         .fullscreen #controls {
             display: none; /* Hide the controls when in full-screen mode */
         }
-        /* Centering content vertically */
         #content {
             height: 100vh;
             display: flex;
@@ -86,23 +91,22 @@
         <button id="loadPricing" style="font-size: 18px;">Učitaj Cjenovnik</button>
         <input type="file" id="fileInput" accept=".txt" style="display:none;">
     </div>
-
     <div id="priceContainer">
-		<table cellspacing="0" cellpadding="0" border="0" width="95%">
-			<tr>
-				<td width="27%" align="center" valign="middle"><div id="contactInfo"></div></td>
-				<td align="center" valign="top"><div id="companyDetails"></div></td>
-				<td width="27%" align="center" valign="middle"><div id="dateTime"></div></td>
-			</tr>
-		</table>
-		Kliknite/odaberite jednu od kategorija navedenih ispod: <div id="categories">...</div>
+        <table cellspacing="0" cellpadding="0" border="0" width="95%">
+            <tr>
+                <td width="27%" align="center" valign="middle"><div id="contactInfo"></div></td>
+                <td align="center" valign="top"><div id="companyDetails"></div></td>
+                <td width="27%" align="center" valign="middle"><div id="dateTime"></div></td>
+            </tr>
+        </table>
+        Kliknite/odaberite jednu od kategorija navedenih ispod: <div id="categories">...</div>
         <table id="priceTable">
             <thead>
                 <tr>
                     <th>Rb</th>
                     <th>Naziv artikla</th>
-					<th>JMJ</th>
-					<th>Jedinična cijena</th>
+                    <th>JMJ</th>
+                    <th>Jedinična cijena</th>
                 </tr>
             </thead>
             <tbody></tbody>

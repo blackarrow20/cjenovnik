@@ -11,7 +11,7 @@
             "categoryName": "Željezo",
             "items": [
                 { "rb": "1", "name": "Fe livačko (kasirano na male dužine)", "jmj": "kg", "price": "0,48 KM" },
-                { "rb": "2", "name": "Fe +10mm kasirano (Bez ulja, bez gusa)", "jmj": "kg", "price": "0,45 KM" },
+                { "rb": "2", "name": "Fe +10 mm kasirano (Bez ulja, bez gusa)", "jmj": "kg", "price": "0,45 KM" },
                 { "rb": "3", "name": "Fe +10 mm koje nije kasirano", "jmj": "kg", "price": "0,40 KM" },
                 { "rb": "4", "name": "Fe +6 mm kasirano (bez ulja, bez nečistoća)", "jmj": "kg", "price": "0,40 KM" },
                 { "rb": "5", "name": "Fe +6 mm sa nečistoćama", "jmj": "kg", "price": "0,32 KM" },
@@ -42,7 +42,7 @@
                 { "rb": "20", "name": "Cu III klasa", "jmj": "kg", "price": "12,50 KM" },
                 { "rb": "21", "name": "Cu III klasa paljeni", "jmj": "kg", "price": "12,00 KM" },
                 { "rb": "22", "name": "Bakar Milbery lim", "jmj": "kg", "price": "13,00 KM" },
-                { "rb": "23", "name": "Bakar Milbery žica, +5mm", "jmj": "kg", "price": "14,50 KM" },
+                { "rb": "23", "name": "Bakar Milbery šine, žica, +5mm", "jmj": "kg", "price": "14,50 KM" },
                 { "rb": "24", "name": "Bakar uže čisto", "jmj": "kg", "price": "14,00 KM" },
                 { "rb": "25", "name": "Bakar mješani", "jmj": "kg", "price": "10,00 KM" },
                 { "rb": "26", "name": "Bakar sa izolacijom (sa papirnom izolacijom)", "jmj": "kg", "price": "8,00 KM" },
