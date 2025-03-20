@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #004d00, #66cc66);
+            background: #006600;
             margin: 0;
             text-align: center;
             overflow: hidden; /* Prevent scrollbars */
@@ -37,7 +37,7 @@
             background-color: #339933;
             color: white;
         }
-        #loadPricing, #fullScreen { 
+        #homePage, #loadPricing1, #loadPricing2, #fullScreen { 
             background: #009900; 
             color: white; 
         }
@@ -125,52 +125,18 @@
     </style>
 </head>
 <body>
-<div id="content">    
-    <div id="priceContainer">
-        <table cellspacing="0" cellpadding="0" border="0" width="95%">
-            <tr>
-                <td width="27%" align="center" valign="middle"><img src="logo.svg"></td>
-                <td align="center" valign="top">
-					<div id="companyDetails" width="100%">
-						<div onclick="window.parent.postMessage('toggleFullScreenRequest', '*');"><strong>METAL RECYCLING D.O.O.</strong></div>
-						<div style="font-size: 0.75em;">Društvo za proizvodnju, preradu, trgovinu i usluge</div>
-					</div>
-					<div id="dateTime"></div></td>
-                <td width="27%" align="center" valign="middle">
-					<div id="contactInfo">
-						<div>Adresa: ul. Halilovići br. 9</div>
-						<div>Tel./Fax: 033/466-401</div>
-						<div>Email: info@trgosirovina.ba</div>
-					</div>
-				</td>
-            </tr>
-        </table><br>
-		<div style="font-size: 1.7em;">
-			DOBRODOŠLI!<br>
-			HVALA ŠTO MISLITE NA OKOLIŠ :)
-		</div>
-		<br>
-		<center>
-			<table class="cjenovnik-table">
-				<tr>
-					<td class="cjenovnik-img-col">
-						<img id="cjenovnik-image" src="eco-planet.png" alt="Slika" width="150">
-					</td>
-					<td class="cjenovnik-btn-col">
-						IZBORNIK:<br>
-						<a href="cjenovnik1.html">
-						<button id="cjenovnik-btn-otkup-malo" class="cjenovnik-btn">CJENOVNIK OTKUPA OTPADA NA MALO</button>
-						</a><br><br>
-						
-						<a href="cjenovnik2.html">
-						<button id="cjenovnik-btn-otkup" class="cjenovnik-btn">CJENOVNIK OTKUPA</button>
-						</a>
-					</td>
-				</tr>
-			</table>
-		</center>
-		<br><br>
+<div id="content">
+    <div id="controls">
+		<a href="#" onclick="event.preventDefault(); window.location.href = window.location.href;">
+			<button id="homePage" style="font-size: 18px;">Home Page</button>
+		</a>
+        <button id="fullScreen" style="font-size: 18px;">Puni Zaslon</button>
+		<button id="loadPricing1" style="font-size: 18px;">Učitaj Cjenovnik 1</button>
+		<button id="loadPricing2" style="font-size: 18px;">Učitaj Cjenovnik 2</button>
+        <input type="file" id="fileInput1" accept=".txt" style="display:none;">
+		<input type="file" id="fileInput2" accept=".txt" style="display:none;">
     </div>
+    <iframe id="contentFrame" src="start.html" style="width: 100%; height: 100vh; border: none;"></iframe>
 </div>
 
 <script>
@@ -183,20 +149,41 @@ $(document).ready(function() {
     $('#fullScreen').click(toggleFullScreen);
   
     // Handle Pricing File Load
-    $('#loadPricing').click(function() {
-        $('#fileInput').click();
+    $('#loadPricing1').click(function() {
+        $('#fileInput1').click();
+    });
+	$('#loadPricing2').click(function() {
+        $('#fileInput2').click();
     });
 
-    $('#fileInput').change(function(event) {
+    $('#fileInput1').change(function(event) {
         var file = event.target.files[0];
         if (file) {
             var reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     var jsonData = JSON.parse(e.target.result);
-                    localStorage.setItem('pricingData', JSON.stringify(jsonData));
-                    displayPricing(jsonData);
-                    $('#fileInput').val(''); // Reset file input
+                    localStorage.setItem('pricingData1', JSON.stringify(jsonData));
+                    $('#fileInput1').val(''); // Reset file input
+					$("#contentFrame").attr("src", $("#contentFrame").attr("src"));
+                } catch (error) {
+                    alert('Invalid JSON file format.');
+                }
+            };
+            reader.readAsText(file);
+        }
+    });
+	
+	$('#fileInput2').change(function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    var jsonData = JSON.parse(e.target.result);
+                    localStorage.setItem('pricingData2', JSON.stringify(jsonData));
+                    $('#fileInput2').val(''); // Reset file input
+					$("#contentFrame").attr("src", $("#contentFrame").attr("src"));
                 } catch (error) {
                     alert('Invalid JSON file format.');
                 }
@@ -277,6 +264,16 @@ function onFullScreenChange() {
         $('body').removeClass('fullscreen');
     }
 }
+
+window.addEventListener("message", function(event) {
+	// Check if the iframe wants to toggle fullscreen
+	if (event.data === "toggleFullScreenRequest") {
+		if (isFullScreen) {
+			toggleFullScreen();
+		}
+	}
+});
+		
 </script>
 </body>
 </html>

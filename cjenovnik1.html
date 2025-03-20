@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Price List</title>
     <script src="jquery-1.12.4.min.js"></script>
     <style>
         body {
@@ -82,144 +82,146 @@
             flex-direction: column;
             position: relative; /* Ensure that the time can be positioned relative to the content */
         }
-		
-		
-		
-		table.cjenovnik-table {
-            width: 65%;
-            border-collapse: collapse;
-        }
-        td.cjenovnik-img-col {
-            padding: 20px;
-            text-align: center;
-            vertical-align: middle;
-        }
-        td.cjenovnik-btn-col {
-            text-align: center;
-            padding: 20px;
-        }
-        .cjenovnik-btn {
-            display: inline-block;
-            min-width: 345px;  /* Ensures buttons have the same width */
-            min-height: 60px;  /* Ensures buttons have the same height */
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            vertical-align: middle;
-            line-height: 30px; /* Centers text vertically */
-            color: white;
-            background: #4CAF50;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
-        }
-        .cjenovnik-btn:hover {
-            background: #3e8e41;
-        }
-        .cjenovnik-btn:active {
-            background: #2e7031;
-            transform: scale(0.95);
-        }
     </style>
 </head>
 <body>
-<div id="content">    
+<div id="content">
     <div id="priceContainer">
         <table cellspacing="0" cellpadding="0" border="0" width="95%">
             <tr>
+				<td width="1%" align="center" valign="middle"><a href="start.html"><button class='button_chosen'><b>HOMEPAGE</b></button></a></td>
                 <td width="27%" align="center" valign="middle"><img src="logo.svg"></td>
-                <td align="center" valign="top">
-					<div id="companyDetails" width="100%">
-						<div onclick="window.parent.postMessage('toggleFullScreenRequest', '*');"><strong>METAL RECYCLING D.O.O.</strong></div>
-						<div style="font-size: 0.75em;">Društvo za proizvodnju, preradu, trgovinu i usluge</div>
-					</div>
-					<div id="dateTime"></div></td>
-                <td width="27%" align="center" valign="middle">
-					<div id="contactInfo">
-						<div>Adresa: ul. Halilovići br. 9</div>
-						<div>Tel./Fax: 033/466-401</div>
-						<div>Email: info@trgosirovina.ba</div>
-					</div>
-				</td>
+                <td align="center" valign="top"><div id="companyDetails" width="100%"></div><div id="dateTime"></div></td>
+                <td width="27%" align="center" valign="middle"><div id="contactInfo"></div></td>
             </tr>
-        </table><br>
-		<div style="font-size: 1.7em;">
-			DOBRODOŠLI!<br>
-			HVALA ŠTO MISLITE NA OKOLIŠ :)
-		</div>
-		<br>
-		<center>
-			<table class="cjenovnik-table">
-				<tr>
-					<td class="cjenovnik-img-col">
-						<img id="cjenovnik-image" src="eco-planet.png" alt="Slika" width="150">
-					</td>
-					<td class="cjenovnik-btn-col">
-						IZBORNIK:<br>
-						<a href="cjenovnik1.html">
-						<button id="cjenovnik-btn-otkup-malo" class="cjenovnik-btn">CJENOVNIK OTKUPA OTPADA NA MALO</button>
-						</a><br><br>
-						
-						<a href="cjenovnik2.html">
-						<button id="cjenovnik-btn-otkup" class="cjenovnik-btn">CJENOVNIK OTKUPA</button>
-						</a>
-					</td>
-				</tr>
-			</table>
-		</center>
-		<br><br>
-    </div>
+        </table>
+        Kliknite/odaberite jednu od kategorija navedenih ispod: <div id="categories">...</div>
+        <table id="priceTable">
+            <thead>
+                <tr>
+                    <th>Rb</th>
+                    <th>Naziv artikla</th>
+                    <th>JMJ</th>
+                    <th>Jedinična cijena</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>               
+    </div>    
 </div>
 
 <script>
-$(document).ready(function() {	
+$(document).ready(function() {
+	displayCategory();
+	
     // Update Date & Time every minute
     setInterval(updateDateTime, 60000);
     updateDateTime();
 
     // Handle Full-Screen Mode
     $('#fullScreen').click(toggleFullScreen);
-  
-    // Handle Pricing File Load
-    $('#loadPricing').click(function() {
-        $('#fileInput').click();
-    });
 
-    $('#fileInput').change(function(event) {
-        var file = event.target.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    var jsonData = JSON.parse(e.target.result);
-                    localStorage.setItem('pricingData', JSON.stringify(jsonData));
-                    displayPricing(jsonData);
-                    $('#fileInput').val(''); // Reset file input
-                } catch (error) {
-                    alert('Invalid JSON file format.');
-                }
-            };
-            reader.readAsText(file);
-        }
-    });
-	
+	$(window).resize(function() {
+		adjustPadding();
+	});
+  
     // Listen for full-screen change events
     document.addEventListener('fullscreenchange', onFullScreenChange);
     document.addEventListener('webkitfullscreenchange', onFullScreenChange);
     document.addEventListener('mozfullscreenchange', onFullScreenChange);
-    document.addEventListener('msfullscreenchange', onFullScreenChange);
-	
-	var fontSize = 18;
-	var fontStyle = "Verdana, Geneva, sans-serif";
-	if (fontSize && fontStyle) {
-        $('body').css('font-size', fontSize);
-        $('body').css('font-family', fontStyle);
-    }
+    document.addEventListener('msfullscreenchange', onFullScreenChange);		
 });
 
-let isFullScreen = 0;
+function getUrlParameter(name) {
+	let params = new URLSearchParams(window.location.search);
+	return params.get(name); // Returns value or null if not found
+}
+			
+function adjustPadding() {
+    var cellWidth = $('td.articles').width();    
+    var paddingValue = cellWidth * 0.2;    
+    $('td.articles').css('padding-left', paddingValue + 'px');
+	
+	cellWidth = $('td.prices').width();    
+    paddingValue = cellWidth * 0.2;    
+    $('td.prices').css('padding-left', paddingValue + 'px');
+}
+
+let isFullScreen = false;
+
+function displayCategory(categoryName = "") {
+	// Load pricing from localStorage
+	if (localStorage.getItem('pricingData1')) {
+		displayPricing(JSON.parse(localStorage.getItem('pricingData1')), categoryName);
+	} else {
+		displayPricing(JSON.parse("{}"), categoryName);
+	}
+}    
+	
+function displayPricing(data, categoryName = "") {
+    var tableBody = $('#priceTable tbody');
+    tableBody.empty();
+	$("#categories").html("");
+
+	var title = data.header && data.header.title ? data.header.title : "CJENOVNIK";
+    var companyName = data.header && data.header.name ? data.header.name : "Nepoznata Kompanija";
+	var companyAddress = data.header && data.header.address ? data.header.address : "Nepoznata Adresa";
+    var companyContact = data.header && data.header.contact ? data.header.contact : "Nema Kontaktnih Podataka";
+	var companyEmail = data.header && data.header.email ? data.header.email : "Nema Emaila";
+	
+    $('#companyDetails').html(
+		'<div onclick=\'window.parent.postMessage("toggleFullScreenRequest", "*");\'><strong>' + title + '</strong></div>' +
+        '<div>' + companyName + '</div>'
+    );
+
+    // Display the contact information below the pricing container
+    $('#contactInfo').html(
+		'<div>' + companyAddress + '</div>' +
+        '<div>' + companyContact + '</div>' +
+		'<div>' + companyEmail + '</div>'
+    );
+
+    // Apply font size and font style from the JSON data if present
+    if (data.fontSize && data.fontStyle) {
+        $('body').css('font-size', data.fontSize);
+        $('body').css('font-family', data.fontStyle);
+    }
+
+    if (Array.isArray(data.categories)) {
+        $.each(data.categories, function(index, category) {
+			if (categoryName == "") categoryName = category.categoryName;
+			if (categoryName == category.categoryName) {
+				$("#categories").append(
+					"<button class='button_chosen' onclick=\"displayCategory('" + category.categoryName + "');\">" + 
+					category.categoryName + 
+					"</button>"
+				);
+				$.each(category.items, function(index, item) {
+					tableBody.append(
+						'<tr><td>' + 
+						(item.rb || "N/A") + 
+						'</td><td class="articles" align="left">' + 
+						(item.name || "Bezimena stavka") + 
+						'</td><td>' + 
+						(item.jmj || "N/A") + 
+						'</td><td class="prices" align="left">' + 
+						(item.price || "N/A") + 
+						'</td></tr>'
+					);     
+				});
+			} else {
+				$("#categories").append(
+					"<button class='button_simple' onclick=\"displayCategory('" + category.categoryName + "');\">" + 
+					category.categoryName + 
+					"</button>"
+			    );
+			}
+		});
+    } else {		
+        tableBody.append('<tr><td colspan="4">Nema podataka, molimo učitajte cjenovnik iz fajla...</td></tr>');
+    }
+	adjustPadding();
+}
 
 function getCurrentDateTime() {
     var now = new Date();
@@ -249,7 +251,7 @@ function toggleFullScreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
-        isFullScreen = 0;
+        isFullScreen = false;
         $('body').removeClass('fullscreen');
     } else {
         // Enter Full Screen
@@ -262,7 +264,7 @@ function toggleFullScreen() {
         } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
         }
-        isFullScreen = 1;
+        isFullScreen = true;
         $('body').addClass('fullscreen');
     }
 }
@@ -270,10 +272,10 @@ function toggleFullScreen() {
 function onFullScreenChange() {
     // When the full screen status changes, update the isFullScreen flag
     if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
-        isFullScreen = 1;
+        isFullScreen = true;
         $('body').addClass('fullscreen');
     } else {
-        isFullScreen = 0;
+        isFullScreen = false;
         $('body').removeClass('fullscreen');
     }
 }
