@@ -94,9 +94,9 @@
     <div id="priceContainer">
         <table cellspacing="0" cellpadding="0" border="0" width="95%">
             <tr>
+                <td width="27%" align="center" valign="middle"><img src="logo.svg"></td>
+                <td align="center" valign="top"><div id="companyDetails" width="100%"></div><div id="dateTime"></div></td>
                 <td width="27%" align="center" valign="middle"><div id="contactInfo"></div></td>
-                <td align="center" valign="top"><div id="companyDetails"></div></td>
-                <td width="27%" align="center" valign="middle"><div id="dateTime"></div></td>
             </tr>
         </table>
         Kliknite/odaberite jednu od kategorija navedenih ispod: <div id="categories">...</div>
@@ -189,10 +189,10 @@ function displayPricing(data, categoryName = "") {
     var companyName = data.header && data.header.name ? data.header.name : "Nepoznata Kompanija";
 	var companyAddress = data.header && data.header.address ? data.header.address : "Nepoznata Adresa";
     var companyContact = data.header && data.header.contact ? data.header.contact : "Nema Kontaktnih Podataka";
-	var companyNum = data.header && data.header.num ? data.header.num : "Nema Broja";
+	var companyEmail = data.header && data.header.email ? data.header.email : "Nema Emaila";
 	
     $('#companyDetails').html(
-		'<div><strong>' + title + '</strong></div>' +
+		'<div onclick="if (isFullScreen) toggleFullScreen();"><strong>' + title + '</strong></div>' +
         '<div>' + companyName + '</div>'
     );
 
@@ -200,7 +200,7 @@ function displayPricing(data, categoryName = "") {
     $('#contactInfo').html(
 		'<div>' + companyAddress + '</div>' +
         '<div>' + companyContact + '</div>' +
-		'<div>' + companyNum + '</div>'
+		'<div>' + companyEmail + '</div>'
     );
 
     // Apply font size and font style from the JSON data if present
@@ -256,7 +256,7 @@ function getCurrentDateTime() {
 }
 
 function updateDateTime() {
-    $('#dateTime').html("Datum i Vrijeme<br><span onclick='if (isFullScreen) toggleFullScreen();'>" + getCurrentDateTime() + "</span>");
+    $('#dateTime').html("Vrijeme: " + getCurrentDateTime());
 }
 
 function toggleFullScreen() {

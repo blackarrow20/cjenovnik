@@ -4,7 +4,7 @@
         "name": "\"Trgosirovina\" D.O.O. Sarajevo",
         "address": "Adresa: ul. Halilovići br. 9",
         "contact": "Tel./Fax: 033/466-401",
-        "num": "Broj: 115/25"
+        "email": "Email: info@trgosirovina.ba"
     },
     "categories": [
         {
