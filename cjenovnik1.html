@@ -89,7 +89,7 @@
     <div id="priceContainer">
         <table cellspacing="0" cellpadding="0" border="0" width="95%">
             <tr>
-				<td width="1%" align="center" valign="middle"><a href="start.html"><button class='button_chosen'><b>OPEN<br>HOMEPAGE</b></button></a></td>
+				<td width="1%" align="center" valign="middle"><a href="start.html"><button class='button_chosen'><b>OTVORI<br>HOMEPAGE</b></button></a></td>
                 <td width="15%" align="center" valign="middle"><a href="start.html"><img src="logo.png" height="60px" width="120px"></a></td>
                 <td align="center" valign="top"><div id="companyDetails" width="100%"></div><div id="dateTime"></div></td>
                 <td width="27%" align="center" valign="middle" style="white-space: nowrap;"><div id="contactInfo"></div></td>
@@ -106,7 +106,14 @@
                 </tr>
             </thead>
             <tbody></tbody>
-        </table>               
+        </table>
+		<br>
+		IZBORNIK:<br>
+		<a href="cjenovnik1.html"><button id="cjenovnik-btn-otkup-malo" class="button_chosen" style="width: 400px;">CJENOVNIK OTKUPA OTPADA NA MALO</button></a>
+		<br>
+		<a href="cjenovnik2.html"><button id="cjenovnik-btn-otkup" class="button_simple" style="width: 400px;">CJENOVNIK OTKUPA</button></a>
+		<br>
+		<a href="start.html"><button id="cjenovnik-btn-otkup" class="button_simple" style="width: 400px;">HOMEPAGE</button></a>
     </div>    
 </div>
 
@@ -170,7 +177,7 @@ function displayPricing(data, categoryName = "") {
 	var companyEmail = data.header && data.header.email ? data.header.email : "Nema Emaila";
 	
     $('#companyDetails').html(
-		'<div onclick=\'window.parent.postMessage("toggleFullScreenRequest", "*");\'><strong>' + title + '</strong></div>' +
+		'<div onclick=\'window.parent.postMessage("toggleFullScreenRequest", "*");\' style="color: darkgreen;"><strong>' + title + '</strong></div>' +
         '<div>' + companyName + '</div>'
     );
 

@@ -1,10 +1,10 @@
 {
     "header": {
-        "title": "CJENOVNIK OTKUPA OTPADA NA MALO",
-        "name": "\"Trgosirovina\" D.O.O. Sarajevo",
+        "title": "CJENOVNIK OTKUPA",
+        "name": "\"METAL RECYCLING\" D.O.O. Sarajevo",
         "address": "Adresa: ul. Halilovići br. 9",
-        "contact": "Tel./Fax: 033/466-401",
-        "email": "Email: info@trgosirovina.ba"
+        "contact": "Tel./Fax: 033/767-370",
+        "email": "Email: anel.bicic@gmail.com"
     },
     "categories": [
         {
