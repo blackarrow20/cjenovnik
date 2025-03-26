@@ -99,7 +99,7 @@
         <table id="priceTable">
             <thead>
                 <tr>
-                    <th>Rb</th>
+                    <th>Šifra</th>
                     <th>Naziv artikla</th>
                     <th>JMJ</th>
                     <th>Jedinična cijena</th>
@@ -109,11 +109,11 @@
         </table>
 		<br>
 		IZBORNIK:<br>
-		<a href="cjenovnik1.html"><button id="cjenovnik-btn-otkup-malo" class="button_simple" style="width: 400px;">CJENOVNIK OTKUPA OTPADA NA MALO</button></a>
+		<a href="cjenovnik1.html"><button id="cjenovnik-btn-otkup-malo" class="button_simple" style="width: 500px;">CJENOVNIK OTKUPA OTPADA NA MALO</button></a>
 		<br>
-		<a href="cjenovnik2.html"><button id="cjenovnik-btn-otkup" class="button_chosen" style="width: 400px;">CJENOVNIK OTKUPA</button></a>
+		<a href="cjenovnik2.html"><button id="cjenovnik-btn-otkup" class="button_chosen" style="width: 500px;">CJENOVNIK PRODAJE SEKUNDARNIH SIROVINA NA MALO</button></a>
 		<br>
-		<a href="start.html"><button id="cjenovnik-btn-otkup" class="button_simple" style="width: 400px;">HOMEPAGE</button></a>		
+		<a href="start.html"><button id="cjenovnik-btn-otkup" class="button_simple" style="width: 500px;">HOMEPAGE</button></a>		
     </div>    
 </div>
 
@@ -206,7 +206,7 @@ function displayPricing(data, categoryName = "") {
 				$.each(category.items, function(index, item) {
 					tableBody.append(
 						'<tr><td>' + 
-						(item.rb || "N/A") + 
+						(item.sifra || " ") + 
 						'</td><td class="articles" align="left">' + 
 						(item.name || "Bezimena stavka") + 
 						'</td><td>' + 
